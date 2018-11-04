@@ -27,13 +27,14 @@ The conversational model uses an encoder-decoder architecture built using two LS
 
 ### Datasets
 
-The intent model is trained on two separate datasets: one representing general human dialogues and another representing possible queries a user may make when requesting news. The dialogue data can be found in `data/dialogue` and news data in `data/news/newsData.csv`. The newsData was generated manually, meaning I created the dataset by entering several queries that I thought someone would use when wanting to search for news articles. To enhance the size of the dataset I left words unfilled in each of the queries which could be filled with possible keywords from categories coming from the NewsAPI. For example:
+The intent model is trained on two separate datasets: one representing general human dialogues and another representing possible queries a user may make when requesting news. The dialogue data can be found in `data/dialogue` and news data in `data/news/newsData.csv`. The newsData was generated manually, meaning I created the dataset by entering several queries that I thought someone would use when wanting to search for news articles. To enhance the size of the dataset, I left words unfilled in each of the queries which could be filled with possible keywords from categories coming from the NewsAPI. For example:
 
-Unfilled Query: `Show me the latest new on <fill>`
+Unfilled Query: `Show me the latest new on <fill>.`
 
-Then we can substitute `<fill>` with keywords such as `business` or `CNN` which will give us two queries.
+Then we can substitute `<fill>` with keywords such as `business` or `CNN` which will give us a total of two queries.
 
 `Show me the latest new on business`
+
 `Show me the latest new on CNN`
 
 The unfilled queries can be found in  `data/news/newsSamples.json`. 
