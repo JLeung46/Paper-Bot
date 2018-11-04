@@ -1,0 +1,51 @@
+/* /static/style.css */
+
+body,html {
+    height: 100%;
+}
+
+.chat-container {
+    margin: 0px;
+    padding: px;
+}
+
+.chat-message {
+  padding: 6px;
+  border-radius: 3px;
+  margin-bottom: 3px;
+}
+
+.bot-message {
+    background: #c5f0a2;
+    color: black;
+}
+
+.human-message {
+    background: #baddff;
+    color: black;
+    margin: 13px 1px;
+}
+
+.input {
+  width: 100%;
+  margin: 35px 0px;
+  height: 60px;
+  border: 1px solid rosybrown;
+  border-radius: 3px;
+}
+
+a {
+color: #cc0000;
+}
+
+a:link {
+color: #cc0000;
+}
+
+a:visited {
+color: #999999;
+}
+
+a:hover {
+color: #ff3300;
+}

@@ -1,0 +1,33 @@
+{
+	"samples":
+		{
+
+			"categories":
+				[
+				"What's the latest news in <fill>?",
+				"Tell me what's happening in <fill>.",
+				"Show me news related to <fill>.",
+				"Give me the latest news in <fill>.",
+				"Show me the newest <fill> related news.",
+				"Can you show me news about <fill>?"
+				],
+
+			"countries":
+				[
+				"Show me the latest news in <fill>.",
+				"What's happening in <fill>?",
+				"Show me the latest news happening in <fill>",
+				"What are the latest stories in <fill>"
+				],
+
+			"publishers":
+				[
+				"Show me the latest articles from <fill>.",
+				"Get me news articles from <fill>.",
+				"Show me interesting news from <fill>.",
+				"What top stories is <fill> running right now?"
+				]
+
+		}
+
+}
