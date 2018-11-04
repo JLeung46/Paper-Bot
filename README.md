@@ -23,6 +23,7 @@ The system contains two modeling components: an intent model and a conversationa
 The conversational model uses an encoder-decoder architecture built using two LSTMs (commonly referred to as a seq2seq model). The encoder endcodes the input into a "thought vector" while the decoder decodes the output vector into a response. You can read more about seq2seq models here: 
 
 [Sequence to Sequence Learning with Neural Networks](https://arxiv.org/abs/1409.3215)
+
 [Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation](https://arxiv.org/abs/1406.1078)
 
 ### Datasets
@@ -48,4 +49,4 @@ The seq2seq model is trained using the [Cornell Movie Dialogs Corpus](http://www
 
 
 ### Text Parsing
-To extract keywords from the user's input I use the `nltk` library. I utilized nltk's named entity recognizer to extract locations and chunking to extract possible search words. One issue is that the nltk's NER system has trouble recognizing locations that aren't properly capitalized so if a user typed `Show me news related to business in the united states` then `united states` wouldn't be recognized since it wasn't properly cased. To solve this I used [Truecaser](https://github.com/nreimers/truecaser) to convert the input to its most probable casing.
+To extract keywords from the user's input I use the `nltk` library. I utilized nltk's named entity recognizer to extract locations and chunking to extract possible search words. One issue is that the nltk's NER system has trouble recognizing locations that aren't properly capitalized so if a user typed `Show me news on the iphone in the united states` then `united states` wouldn't be recognized since it wasn't properly cased. To solve this I used [Truecaser](https://github.com/nreimers/truecaser) to convert the input to its most probable casing before applying NER.
