@@ -31,17 +31,21 @@ The intent model is trained on two separate datasets: one representing general h
 
 Unfilled Query: `Show me the latest new on <fill>.`
 
-Then we can substitute `<fill>` with keywords such as `business` or `CNN` which will give us a total of two queries.
+Then we can substitute `<fill>` with keywords such as `business`, `sports` or `CNN` which will give us a total of three queries:
 
-`Show me the latest new on business`
+`Show me the latest news on business.`
 
-`Show me the latest new on CNN`
+`Show me the latest news on sports.`
 
-The unfilled queries can be found in  `data/news/newsSamples.json`. 
+`Show me the latest news on CNN.`
+
+The unfilled queries can be found in  `data/news/newsSamples.json`.
+
+The seq2seq model is trained using the [Cornell Movie Dialogs Corpus](http://www.cs.cornell.edu/~cristian/Cornell_Movie-Dialogs_Corpus.html). The data is sorted into question answer pairs 
 
 ### Text Features
 
 
 
 ### Text Parsing
-After user input is received, the intent model classifies the input as dialogue or news.
+To extract keywords from the user's input I use the `nltk` library. I utilized nltk's named entity recognizer to extract locations and chunking to extract possible search words. One issue is that the nltk's NER system has trouble recognizing locations that aren't properly capitalized so if a user typed `Show me news related to business in the united states` then `united states` wouldn't be recognized since it wasn't properly cased. To solve this I used [Truecaser](https://github.com/nreimers/truecaser) to convert the input to its most probable casing.
