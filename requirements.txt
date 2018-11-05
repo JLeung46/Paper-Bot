@@ -1,0 +1,9 @@
+tensorflow-gpu>=1.0
+numpy
+pandas
+sklearn
+nltk
+tqdm
+flask
+requests
+iso3166
