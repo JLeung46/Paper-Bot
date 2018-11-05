@@ -23,7 +23,7 @@ def tfidf_features(X_train, X_test, vectorizer_path=None):
     tfidf_vectorizer = TfidfVectorizer()
     X_train = tfidf_vectorizer.fit_transform(X_train)
     X_test = tfidf_vectorizer.transform(X_test)
-    if vectorizer_path not None:
+    if vectorizer_path != None:
         with open(vectorizer_path, 'wb') as fin:
             pickle.dump(tfidf_vectorizer, fin)
     return X_train, X_test

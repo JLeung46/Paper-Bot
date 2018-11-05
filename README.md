@@ -30,23 +30,60 @@ The conversational model uses an encoder-decoder architecture built using two LS
 
 The intent model is trained on two separate datasets: one representing general human dialogues and another representing possible queries a user may make when requesting news. The dialogue data can be found in `data/dialogue` and news data in `data/news/newsData.csv`. The newsData was generated manually, meaning I created the dataset by entering several queries that I thought someone would use when wanting to search for news articles. To enhance the size of the dataset, I left words unfilled in each of the queries which could be filled with possible keywords from categories coming from the NewsAPI. For example:
 
-Unfilled Query: `Show me the latest new on <fill>.`
+	Unfilled Query: Show me the latest news on <fill>.
 
-Then we can substitute `<fill>` with keywords such as `business`, `sports` or `CNN` which will give us a total of three queries:
+	Then we can substitute <fill> with keywords such as business, sports or CNN which will give us a total of three queries:
 
-`Show me the latest news on business.`
+	Show me the latest news on business.
 
-`Show me the latest news on sports.`
+	Show me the latest news on sports.
 
-`Show me the latest news on CNN.`
+	Show me the latest news on CNN.
 
 The unfilled queries can be found in  `data/news/newsSamples.json`.
 
-The seq2seq model is trained using the [Cornell Movie Dialogs Corpus](http://www.cs.cornell.edu/~cristian/Cornell_Movie-Dialogs_Corpus.html). The data is sorted into question answer pairs 
+The seq2seq model is trained using the [Cornell Movie Dialogs Corpus](http://www.cs.cornell.edu/~cristian/Cornell_Movie-Dialogs_Corpus.html). The data is sorted into question answer pairs before training and the code is found in `chatbot/corpus/cornelldata`.
 
 ### Text Features
+Simple preprocessing steps were applied to both datasets for the intent model such as removing symbols and stopwords. The data when then vectorized using [tfidf](http://www.tfidf.com).
 
+The seq2seq model uses arguments `--maxLength 10` and `--vocabularySize 40000` to limit the length of sentences and vocabulary size. The embeddings are initialized using pre-trained [GoogleNews](https://code.google.com/archive/p/word2vec) vectors with `--embeddingSize 64`.
 
 
 ### Text Parsing
-To extract keywords from the user's input I use the `nltk` library. I utilized nltk's named entity recognizer to extract locations and chunking to extract possible search words. One issue is that the nltk's NER system has trouble recognizing locations that aren't properly capitalized so if a user typed `Show me news on the iphone in the united states` then `united states` wouldn't be recognized since it wasn't properly cased. To solve this I used [Truecaser](https://github.com/nreimers/truecaser) to convert the input to its most probable casing before applying NER.
+To extract keywords from the user's input I use the `nltk` library. I utilized nltk's named entity recognizer to extract locations and part of speech tagger combined with chunking to extract possible search words. An issue using nltk's NER system was it had trouble recognizing locations that aren't properly capitalized so if a user typed `Show me news on the iphone in the united states` then `united states` wouldn't be recognized since it wasn't properly cased. To solve this I used [Truecaser](https://github.com/nreimers/truecaser) to convert the input to its most probable casing before applying NER.
+
+### Installation
+The program requires the following dependencies:
+
+ * python 3.5
+ * tensorflow
+ * numpy
+ * pandas
+ * sklearn
+ * CUDA
+ * nltk
+ * tqdm
+ * flask
+ * requests
+ * iso3166
+
+Run `pip3 install -r requirements.txt` to install requirements.
+
+
+### Running
+Before running the app we need to download some files:
+
+For truecaser we need the pre-trained `distributions.obj` which contains the frequencies of unigrams, bigrams and trigrams which can be downloaded [here](https://github.com/nreimers/truecaser/releases) and placed in the `truecaser` directory.
+
+The pre-trained seq2seq model can be downloaded [here](https://drive.google.com/file/d/1avtOqtgwCMbaY-z4nv0Tm5WddA94fGMK/view) and in the `save` directory make a directory called `model-server` and unzip the files into it.
+
+To run the app:
+```
+cd app
+python webapp.py
+```
+The app should then be running on [http://localhost:8080/](http://localhost:8080/).
+
+
+### Results

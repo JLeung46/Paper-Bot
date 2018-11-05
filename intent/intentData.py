@@ -38,16 +38,16 @@ class IntentData:
         news = NewsData(self.DATA_DIR)
         self.newsData = news.get_newsDataset()
         self.dialogueData = pd.read_csv(self.DATA_DIR + os.sep + 'dialogue' +
-                                        os.sep + 'dialogues.tsv', sep='\t')
+                                        os.sep + 'dialogues.tsv', sep='\t')\
         .sample(self.sample_size, random_state=self.state)
 
     def cleanData(self):
         """
         Perform text cleaning
         """
-        self.newsData['text'] = self.newsData['text']
+        self.newsData['text'] = self.newsData['text']\
         .map(lambda x: text_prepare(x))
-        self.dialogueData['text'] = self.dialogueData['text']
+        self.dialogueData['text'] = self.dialogueData['text']\
         .map(lambda x: text_prepare(x))
 
     def prepareData(self):
