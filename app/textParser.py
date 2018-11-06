@@ -122,6 +122,9 @@ class TextParser:
 
         if self.keyword:
             completeUrl.append(self.keywordUrl + self.keyword + "&")
+            completeUrl.append(self.apiUrl)
+            return ''.join(completeUrl)
+
 
         if self.country:
             completeUrl.append(self.countryUrl + self.country + "&")
@@ -133,9 +136,6 @@ class TextParser:
 
         elif self.source:
             completeUrl.append(self.sourceUrl + self.source + "&")
-
-        if self.country == '':
-            completeUrl.append(self.countryUrl + "us" + "&")
 
         completeUrl.append(self.apiUrl)
 
