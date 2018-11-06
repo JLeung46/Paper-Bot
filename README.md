@@ -126,10 +126,10 @@ Here's a sample dialog when running the app:
 > 
 > --------------------
 > 
-> **me:**do you know where my cat went?  
+> **me:** do you know where my cat went?  
 > **bot:** I do n't know.
 > 
->**me:**what news is there on the iphone?  
+>**me:** what news is there on the iphone?  
 > **bot:** 
 > 
 > Title: 
