@@ -12,7 +12,7 @@ A conversational chat bot &amp; news article recommender.
 
 This project builds an intent based chatbot capable of handling general conversations as well as providing news article recommendations. The conversational component is built using a seq2seq RNN model from [DeepQA](https://github.com/Conchylicultor/DeepQA). News articles recommendations are provided using the [NewsAPI](https://newsapi.org/). The diagram below shows in more detail the entire pipeline.
 
-![alt tag](pipeline.jpg)
+![alt tag](img/pipeline.jpg)
 
 ## Project Details
 
@@ -84,6 +84,8 @@ cd app
 python webapp.py
 ```
 The app should then be running on [http://localhost:8080/](http://localhost:8080/).
+
+<img src="img/app3.jpg" width="50"/>
 
 
 ### Results

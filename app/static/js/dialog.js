@@ -4,9 +4,14 @@ function submit_message(message) {
     function handle_response(data) {
       // append the bot repsonse to the div
       $('.chat-container').append(`
-            <div class="chat-message col-md-5 offset-md-7 bot-message">
-                ${data.message}
+        <div class="container-fluid">
+            <div class="row">
+                <div class="chat-message col-md-5 offset-md-6 bot-message">
+                    ${data.message}
+                </div>
+                <img class="img-circle" src="static/img/robot2.gif" width=60px height=60px>
             </div>
+        </div>
       `)
       
       $( "#loading" ).remove();
@@ -23,8 +28,13 @@ $('#target').on('submit', function(e){
     }
 
     $('.chat-container').append(`
-        <div class="chat-message col-md-5 human-message">
-            ${input_message}
+        <div class="container-fluid height-1">
+            <div class="row">
+                <img class="img-circle" src="static/img/man.jpg" width=50px height=50px>
+                <div class="chat-message col-md-5 human-message">
+                    ${input_message}
+                </div>
+            </div>
         </div>
     `)
 
