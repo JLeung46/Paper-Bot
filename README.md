@@ -102,55 +102,55 @@ Here's a sample dialog when running the app:
 > 
 > **me:** show me the latest news in sports.  
 > **bot:** 
->
+> 
 > Title: 
 > Warriors takeaways: What we learned in 117-101 win over Grizzlies
->
+> 
 > Description: 
 > Alfonzo McKinnie was exceptional once again, but the Warriors still had some issues Monday night against the Grizzlies.
->
+> 
 > URL: 
 > https://www.nbcsports.com/bayarea/warriors/warriors-takeaways-what-we-learned-117-101-win-over-grizzlies
->
+> 
 > --------------------
->
+> 
 > Title: 
 > Jimmy Butler turns away questions about LA future after loss to Clips
->
+> 
 > Description: 
 > Jimmy Butler's present and potential future landing spot collided at Staples Center, where the Clippers beat Butler and the Timberwolves 120-109. But Butler wasn't interested in
 > expounding on his potential future in L.A.
->
+> 
 > URL: 
 > http://www.espn.com/nba/story/_/id/25191907/jimmy-butler-minnesota-timberwolves-turns-away-questions-future-los-angeles
->
->--------------------
->
+> 
+> --------------------
+> 
 > **me:**do you know where my cat went?  
 > **bot:** I do n't know.
->
+> 
 >**me:**what news is there on the iphone?  
 > **bot:** 
->
+> 
 > Title: 
 > Apple's market cap fell below $1 trillion and its iPhone XR woes just clobbered stocks of its China suppliers too
->
+> 
 > Description: 
 > Shares of Apple's suppliers across Asia were...
->
+> 
 > URL: 
 > http://uk.businessinsider.com/apple-drops-below-1-trillion-clobbering-shares-of-china-suppliers-2018-11
->
+> 
 > --------------------
->
+> 
 > Title: 
 > Apple's market cap fell below $1 trillion and its iPhone XR woes just clobbered stocks of its China suppliers too
->
+> 
 > Description: 
 > Apple’s Asian suppliers fell after a report that Apple will halt additional production lines for the iPhone XR. The news sent Apple below $1 trillion.
->
+> 
 > URL: 
 > https://www.businessinsider.com/apple-drops-below-1-trillion-clobbering-shares-of-china-suppliers-2018-11
->
+> 
 > --------------------
->
+> 
