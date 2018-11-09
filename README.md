@@ -85,7 +85,7 @@ python webapp.py
 ```
 The app should then be running on [http://localhost:8080/](http://localhost:8080/).
 
-![alt tag](img/app.JPG)
+![alt tag](img/app.jpg)
 
 ### Results
 
@@ -126,10 +126,10 @@ Here's a sample dialog when running the app:
 > 
 > --------------------
 > 
-> **me:** do you know where my cat went?  
+> **me:**do you know where my cat went?  
 > **bot:** I do n't know.
 > 
->**me:** what news is there on the iphone?  
+>**me:**what news is there on the iphone?  
 > **bot:** 
 > 
 > Title: 
@@ -154,3 +154,6 @@ Here's a sample dialog when running the app:
 > 
 > --------------------
 > 
+
+### Next Steps
+A major limitation of the current system is the intent dataset does not contain enough variation to capture the many inputs a user may enter when searching for news articles. Additionally, the current approach of using grammar rules to extract potential search keywords isn't very robust. So to improve the current system I'll need to find or generate more data in addition to training a custom NER model which I hope will find improvement in extracting possible search keywords.
