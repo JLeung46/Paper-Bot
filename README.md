@@ -85,7 +85,7 @@ python webapp.py
 ```
 The app should then be running on [http://localhost:8080/](http://localhost:8080/).
 
-![alt tag](img/app.jpg)
+![alt tag](img/app.JPG)
 
 ### Results
 
