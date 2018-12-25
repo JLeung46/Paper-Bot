@@ -4,7 +4,7 @@ import settings
 
 sys.path.append(settings.BASE_DIR)
 
-from dialogManager import DialogueManager
+from dialog_manager import DialogueManager
 
 app = Flask(__name__)
 
@@ -17,10 +17,10 @@ def index():
 
 def get_response(text):
     chatBot = DialogueManager()
-    chatBot.createBot()
+    chatBot.create_bot()
 
     if text:
-        response = chatBot.getAnswer(text)
+        response = chatBot.get_answer(text)
 
         return response
 

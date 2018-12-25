@@ -15,6 +15,7 @@ CHATBOT_PATH = settings.BASE_DIR
 sys.path.append(os.path.join(settings.BASE_DIR, 'intent'))
 
 from chatbot import chatbot
+from chatbot import text_data
 from text_parser import TextParser
 from utils import unpickle_file, text_prepare
 
@@ -38,10 +39,10 @@ class DialogueManager:
         """
         Creates a Chatbot object.
         """
-
-        self.chatbot = chatbot.Chatbot()
-        self.chatbot.main(['--modelTag', 'server', '--test',
-                           'daemon', '--rootDir', CHATBOT_PATH])
+        vocab = text_data.TextData()
+        vocab.load_data()
+        self.chatbot = chatbot.Chatbot(text_data=vocab)
+        self.chatbot.load_model()
 
     def get_answer(self, text):
         """
@@ -59,7 +60,7 @@ class DialogueManager:
         intent = self.intent_recognizer.predict(features)
 
         if intent == 'dialogue':
-            response = self.chatbot.daemonPredict(text)
+            response = self.chatbot.evaluate(text)
             return response
 
         response = self.text_parser.get_response(text)
