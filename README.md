@@ -127,9 +127,39 @@ One method to overcome vanishing gradients is to use Gated Recurrent Units (GRU)
 The code for building the seq2seq model is found in `chatbot/seq2seq.py`
 
 
-### Information Extraction
-The news articles suggested from the bot are limited to what the News API can provide. There are certains rules that mst be followed such as only being able to choose one category and country... 
-To extract keywords from the user's input I use the `nltk` library. I utilized nltk's named entity recognizer to extract locations and part of speech tagger combined with chunking to extract possible search words. An issue using nltk's NER system was it had trouble recognizing locations that aren't properly capitalized so if a user typed `Show me news on the iphone in the united states` then `united states` wouldn't be recognized since it wasn't properly cased. To solve this I used [Truecaser](https://github.com/nreimers/truecaser) to convert the input to its most probable casing before applying NER.
+### Information Extraction from Text
+Inorder to send requests to the News API, relevant information needs to be extracted from the raw user input. Additionally, certain rules must be followed according to the News API such as not being able to mix the sources parameter with the country or category parameter. This can be solved with simple if else statements and to get the list of available news categories, countries and publishers supported by the news api, a request was sent for each of the parameters and saved in `data/news`. Then after a user enters a query, the query can be tokenized and a simple search for any of those news categories, countries or publishers can be performed.
+
+A more interesting problem involved extracting potential search keywords not specified from the News API. For example, using the folllowing queries:
+
+	Show me the latest news related to the iphone.
+	Show me the latest news related to basketball.
+    What is the latest on Donald Trump?
+    What\'s new about bitcoin?
+    What\'s the news on Kim Kardashian?
+
+The goal then is to extract the keywords `iphone`, `basketball`, `Donald Trump`, `bitcoin`, `Kim Kardashian`. This is a typical entity extraction task which involves searching for potentially interesting entities in a sentence. The approach taken in this system is called chunking and works well since the news dataset is relatively small and the queries aren't overly complex. Chunking works by first assigning part of speech tags to each word in the sentence. Next, a chunk grammar is defined to indicate how sentences should be chunked. A chunk grammar can be defined using simple regular expression rules. For example, when trying to extract the keys words from the above sentences the procedure would look at follows: first apply POS tagging:
+
+	[('show', 'VB'), ('me', 'PRP'), ('the', 'DT'), ('latest', 'JJS'), ('news', 'NN'), ('related', 'VBN'), ('to', 'TO'), ('the', 'DT'), ('iphone', 'NN'), ('.', '.')]
+
+	[('What', 'WP'), ("'s", 'VBZ'), ('the', 'DT'), ('news', 'NN'), ('on', 'IN'), ('Kim', 'NNP'), ('Kardashian', 'NNP'), ('?', '.')]
+
+Next, define chunk grammar rules:
+
+	<DT><NN>
+	<NNP>+
+
+The first grammar rule says to find chunks with a determiner <DT> follow by a noun <NN>.
+
+The second grammar rule says to find chunks with one or more proper nouns <NNP>.
+
+The two rules can then extract the two search keywords "iphone" and "Kim Kardashian".
+
+The code for extracting keywords from the raw user input is found in `app/text_parser.py`
+More about information extraction and chunking can be learned from the [nltk book](https://www.nltk.org/book/ch07.html).
+
+A side note: an issue encountered using nltk's NER system when attempting to extract names of countries was it had trouble recognizing countries that aren't properly capitalized. For example, if a user typed `Show me news on the iphone in the united states` then `united states` wouldn't be recognized since it wasn't properly cased. As a work around, [Truecaser](https://github.com/nreimers/truecaser) was used as a preprocessing step to convert the input to its most probable casing before applying NER.
+
 
 ### Installation
 The program requires the following dependencies:
@@ -154,7 +184,7 @@ Before running the app we need to download some files:
 
 For truecaser we need the pre-trained `distributions.obj` which contains the frequencies of unigrams, bigrams and trigrams which can be downloaded [here](https://github.com/nreimers/truecaser/releases) and placed in the `truecaser` directory.
 
-The pre-trained seq2seq model can be downloaded [here](https://drive.google.com/file/d/1avtOqtgwCMbaY-z4nv0Tm5WddA94fGMK/view) and in the `save` directory make a directory called `model-server` and unzip the files into it.
+The pre-trained seq2seq model can be downloaded [here](https://drive.google.com/open?id=1Iqp-ZnT2DVslKw9bIPgMbTUodBeCIkqc) and placed in the `save` directory.
 
 To run the app:
 ```
@@ -164,6 +194,8 @@ python webapp.py
 The app should then be running on [http://localhost:8080/](http://localhost:8080/).
 
 ![alt tag](img/app.JPG)
+
+The chatbot can also be run in a jupyter notebook in `notebooks/chatbot_notebook.py`.
 
 ### Results
 
@@ -233,5 +265,5 @@ Here's a sample dialog when running the app:
 > --------------------
 > 
 
-### Next Steps
-A major limitation of the current system is the intent dataset does not contain enough variation to capture the many inputs a user may enter when searching for news articles. Additionally, the current approach of using grammar rules to extract potential search keywords isn't very robust. So to improve the current system I'll need to find or generate more data in addition to training a custom NER model which I hope will find improvement in extracting possible search keywords.
+### Train your own model
+To train your own seq2seq model, simply run `seq2seq_trainer.py`. Model parameters may be adjusted in `chatbot/chatbot.py`.

@@ -25,10 +25,11 @@ sys.path.append(TRUECASER_DIR)
 from news_data import NewsData
 from truecaser import Truecaser
 
-# Grammar rule for search keywords
+# Grammar rules for search keywords
 GRAMMAR = ('''
-        search_keyword: {<DT>?<IN><NN>*}
-        {<DT><JJ>?<NN>*}
+        search_keyword: {<IN><NN>}
+        {<DT><NN>}
+        {<NNP>+}
         ''')
 
 
@@ -115,7 +116,8 @@ class TextParser:
         tree = chunkParser.parse(pos)
         for subtree in tree.subtrees(filter=lambda x: x.label() == 'search_keyword'):
             for leaf in subtree.leaves():
-                if leaf[1] == 'NN':
+                # Search for nouns and proper nouns. Exclude the word 'news'.
+                if (leaf[1] =='NN' or leaf[1] =='NNP') and leaf[0] != 'news':
                     self.keyword = leaf[0]
 
     def get_source(self, word_tokens):
