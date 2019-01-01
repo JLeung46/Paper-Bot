@@ -135,8 +135,8 @@ A more interesting problem involved extracting potential search keywords not spe
 	Show me the latest news related to the iphone.
 	Show me the latest news related to basketball.
     What is the latest on Donald Trump?
-    What\'s new about bitcoin?
-    What\'s the news on Kim Kardashian?
+    What's new about bitcoin?
+    What's the news on Kim Kardashian?
 
 The goal then is to extract the keywords `iphone`, `basketball`, `Donald Trump`, `bitcoin`, `Kim Kardashian`. This is a typical entity extraction task which involves searching for potentially interesting entities in a sentence. The approach taken in this system is called chunking and works well since the news dataset is relatively small and the queries aren't overly complex. Chunking works by first assigning part of speech tags to each word in the sentence. Next, a chunk grammar is defined to indicate how sentences should be chunked. A chunk grammar can be defined using simple regular expression rules. For example, when trying to extract the keys words from the above sentences the procedure would look at follows: first apply POS tagging:
 
