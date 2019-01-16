@@ -88,7 +88,7 @@ The seq2seq model learns a featurize representation of words, known as word embe
 
 ### Modeling
 #### Logistic Regression
-Logistic Regression was chosen for the intent model as it is fast, doesn't require many hyperparameters that need tuning and generally serves as a strong baseline model. Basically, the way logistic regression works is by first computing a dot product between features and their weights then uses the logit function to squash the output values between 0 and 1 to form probabilties. The simple yet powerful logit classifier  achieved >97% accuracy for classifying the two intents by using a 90/10 train/test split so no other models were tested. 
+Logistic Regression was chosen for the intent model as it is fast, doesn't require many hyperparameters that need tuning and generally serves as a strong baseline model. Basically, the way logistic regression works is by first computing a dot product between features and their weights then uses the logit function to squash the output values between 0 and 1 to form probabilties. Training and testing the logistic regression classifier using a 90/10 split resulted in >97% accuracy.
 
 The code for building the logistic regression model is found in `intent/intent_model.py` and the code for training it is found in `intentTrainer.py`. 
 
